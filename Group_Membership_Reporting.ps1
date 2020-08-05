@@ -4,5 +4,5 @@ $CSVFile = "$env:USERPROFILE\Documents\GitHub\Reports\"+$group+"_"+$DateTime+".c
 
 Get-ADGroup $group -Properties Member |
     Select-Object -Expand Member |
-    Get-ADUser -Property Name, DisplayName | Export-Csv -Path $CSVFile -NoTypeInformation | Out-String -Width 10000
+    Get-ADUser -Property msDS-ExternalDirectoryObjectId, UserPrincipalName, DisplayName | Export-Csv -Path $CSVFile -NoTypeInformation | Out-String -Width 10000
 Write-Host $group " has been exported to " $CSVFile

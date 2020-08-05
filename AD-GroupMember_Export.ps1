@@ -9,7 +9,7 @@ $CSVFile = "$env:USERPROFILE\Documents\GitHub\"+$GroupName+"_"+$DateTime+".csv"
 $CSVOutput = @() 
  
 #// Get all AD groups in the domain 
-$GroupName = 'VPN-2Factor-Access'
+$GroupName = 'PDL_IS'
 $ADGroups = Get-ADGroup -Filter "Name -like '$GroupName'" 
  
 #// Set progress bar variables 
