@@ -9,7 +9,7 @@ $CSVFile = "$env:USERPROFILE\Documents\GitHub\"+$GroupName+"_"+$DateTime+".csv"
 $CSVOutput = @() 
  
 #// Get all AD groups in the domain 
-$GroupName = 'SG_All365_user_e3'
+$GroupName = 'O365.Basic'
 $ADGroups = Get-ADGroup -Filter "Name -like '$GroupName'" 
  
 #// Set progress bar variables 

@@ -1,4 +1,6 @@
-﻿$groupNames = 'O365.Basic','O365.BasicPlus','O365.Standard','O365.Complete','O365.Executive','SG_All365_Users_K1','SG_All365_Users_F1Base','SG_All365_Indepent_F1base','SG_All365_F1Base_EmailEnabled','SG_All365_Users_F1','SG_All365_Users_E3','SG_All365_Users_E5'
+﻿#$groupNames = 'O365.Basic','O365.BasicPlus','O365.Standard','O365.Complete','O365.Executive','SG_All365_Users_K1','SG_All365_Users_F1Base','SG_All365_Indepent_F1base','SG_All365_F1Base_EmailEnabled','SG_All365_Users_F1','SG_All365_Users_E3','SG_All365_Users_E5'
+$groupNames = 'O365.BasicPlus','O365.Standard','O365.Complete'
+
 $output = foreach($group in $groupNames)
 {
  $members = (Get-ADGroup -Identity  $group -properties members).members
@@ -8,6 +10,6 @@ $output = foreach($group in $groupNames)
  }   
 }
 $DateTime = Get-Date -f "yyyy-MM" 
-$FileName = "IndyOfficeReport"
+$FileName = "IndepentOfficeReport"
 $CSVFile = "$env:USERPROFILE\Documents\GitHub\Reports\"+$FileName+"_"+$DateTime+".csv"
 $output | export-csv -path $csvfile -force -notype 
