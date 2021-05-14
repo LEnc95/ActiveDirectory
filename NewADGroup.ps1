@@ -1,0 +1,1 @@
+New-ADGroup -Name "MIMSyncAdmins" -SamAccountName MIMSyncAdmins -GroupCategory Security -GroupScope Global -DisplayName "MIM Sync Admins" -Path "CN=Users,DC=Fabrikam,DC=Com" -Description "Members of this group are MIM Sync Admins and may access SQL server (MIMSQL)"

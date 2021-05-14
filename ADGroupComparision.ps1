@@ -1,0 +1,2 @@
+#diff (Get-ADGroupMember "SG_All365_F1Base_EmailEnabled") (Get-ADGroupMember "O365.BasicPlus") -Property 'SamAccountName' -IncludeEqual | Export-Csv -Path 'C:\Users\914476\OneDrive - Giant Eagle, Inc\Documents\GitHub\Reports\BasicPlusReview.csv'
+Compare-Object (Get-AzureADGroupMember -ObjectId 58f2f809-add2-4989-947e-2fd7ad570739) (Get-AzureADGroupMember -ObjectId 70427c1a-24db-499a-abeb-dc18123a1028) -Property "DisplayName", "ObjectId" -IncludeEqual | Export-Csv -Path 'C:\Users\914476\OneDrive - Giant Eagle, Inc\Documents\GitHub\Reports\indyAzureGroup.csv'

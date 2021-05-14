@@ -1,21 +1,20 @@
-﻿
-$group1 = "Password_Reset_MFA_Users"
+﻿$group1 = "Password_Reset_MFA_Users"
 $group2 = "PasswordReset.MFA"
 
 $users = @{}
-Get-ADUser  -Filter '*' -Property Name, DisplayName | Where {$_.Enabled -eq $True} | ForEach-Object {
+Get-ADUser  -Filter '*' -Property Name, DisplayName | Where-Object {$_.Enabled -eq $True} | ForEach-Object {
     $users[$_.DistinguishedName] = $_
 }
 
 diff (
-    Get-ADGroup $group1  -Properties Member |
-    Select-Object -Expand Member |
-    ForEach-Object { $users[$_] }
-    )(
+        Get-ADGroup $group1  -Properties Member |
+        Select-Object -Expand Member |
+        ForEach-Object { $users[$_] }
+     ) (
     Get-ADGroup $group2 -Properties Member |
     Select-Object -Expand Member |
     ForEach-Object { $users[$_] }
-    ) -Property 'SamAccountName' -IncludeEqual | Export-Csv -Path .\Documents\GitHub\Reports\$group1'-'$group2.csv
+    ) -Property 'SamAccountName' -IncludeEqual | Export-Csv -Path "C:\Temp\"+$group1'-'$group2.csv
 
 #diff (Get-ADGroupMember $group1) (Get-ADGroupMember $group2) -Property 'SamAccountName' -IncludeEqual | Export-Csv -Path .\Documents\GitHub\Reports\$group1'-'$group2.csv
 <#
