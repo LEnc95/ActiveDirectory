@@ -4,7 +4,7 @@ do {
     if ($searchType -eq "1") {
         Write-Host "Search by Group"
         $group = Read-Host "Group Display Name"
-        $groupData = Get-ADGroup $group -Properties members | Select-Object -ExpandProperty members | ForEach-Object { Get-ADUser $_ -Properties memberof } | Select-Object givenname, surname, @{name = 'lastlogontimestamp'; expression = { [DateTime]::FromFileTime($_.lastlogontimestamp) } }, @{name = 'membership'; expression = { $_.memberof -join ',' } }
+        $groupData = Get-ADGroup $group -Properties members | Select-Object -ExpandProperty members | ForEach-Object { Get-ADUser $_ -Properties * } | Select-Object givenname, surname, SamAccountName, extensionAttribute13, title, @{name = 'lastlogontimestamp'; expression = { [DateTime]::FromFileTime($_.lastlogontimestamp) } }, @{name = 'membership'; expression = { $_.memberof -join ',' } }
         $groupData
         $export = Read-Host "Export to csv? [1]YES/[2]no"
         if (1 -eq $export) {
@@ -20,7 +20,7 @@ do {
     }if ($searchType -eq "2") {
         Write-Host "Search by User"
         $user = Read-Host "User SamAccountName"
-        $UserData = Get-ADUser $user -Properties memberof | Select-Object givenname, surname, @{name = 'lastlogontimestamp'; expression = { [DateTime]::FromFileTime($_.lastlogontimestamp) } }, @{name = 'membership'; expression = { $_.memberof -join ',' } }
+        $UserData = Get-ADUser $user -Properties * | Select-Object givenname, surname, SamAccountName, extensionAttribute13, title,  @{name = 'lastlogontimestamp'; expression = { [DateTime]::FromFileTime($_.lastlogontimestamp) } }, @{name = 'membership'; expression = { $_.memberof -join ',' } }
         $UserData
         $export = Read-Host "Export to csv? [1]YES/[2]no"
         if (1 -eq $export) {
