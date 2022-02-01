@@ -1,0 +1,1 @@
+ get-aduser -filter {UserPrincipalName -like "*2@*"} | where-object
