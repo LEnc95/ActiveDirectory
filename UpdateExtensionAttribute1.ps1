@@ -18,7 +18,7 @@ $noext1 = $sngroups #| where-object {$null -eq $_.extensionAttribute1 -and $null
 
 #updates needed
 $update = @([PSCustomObject]@{})
-$noext1 | foreach-object {
+$sngroups | foreach-object {
     $update += [PSCustomObject]@{
         Name = $_.Samaccountname
         Manager = $_.managedby.split(",").split("=")[1]
@@ -29,6 +29,8 @@ $noext1 | foreach-object {
 $update | foreach-object {
     #$_.Name
     #$($_.Manager)
-   Set-ADgroup -identity $_.Name -add @{"extensionattribute1"="$($_.Manager)"}
+   #Set-ADgroup -identity $_.Name -add @{"extensionattribute1"="$($_.Manager)"}
+   Set-ADgroup -identity $_.Name -Replace @{"extensionattribute1"="$($_.Manager)"}
 }
     
+# Set-ADgroup -identity SN_Identity_Access_Management -replace @{"extensionattribute1"="1194330"}
