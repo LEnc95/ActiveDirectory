@@ -51,6 +51,9 @@ Function getuser($who){
     $AzureOwnedDevice = Get-AzureADUserOwnedDevice -ObjectId luke.encrapera@gianteagle.com
     $AzureRegisteredDevice = Get-AzureADUserRegisteredDevice -ObjectId luke.encrapera@gianteagle.com   
 
+    #Azure user MFA registration information for user
+    $AzureMFA = Get-AzureADUserRegisteredDevice -ObjectId
+    
     #Output 
     #Clear-Host
     Write-Host $ge -ForegroundColor Red
