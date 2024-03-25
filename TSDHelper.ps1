@@ -36,6 +36,7 @@ Function getuser($who){
     $azuredata = Get-AzureADUser -ObjectId $userdata.UserPrincipalName
 
     #Azure license assignment 
+    $AzureLicense = Get-AzureADUserLicenseDetail -ObjectId $userdata.UserPrincipalName
 
     #Azure Extention attribute
     $azureextension = Get-AzureADUserExtension -ObjectId $userdata.UserPrincipalName 
