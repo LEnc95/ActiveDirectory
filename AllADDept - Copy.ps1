@@ -1,0 +1,1 @@
+﻿(get-aduser -filter * -property department).department | Sort-Object -Unique

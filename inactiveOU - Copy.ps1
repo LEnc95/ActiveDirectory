@@ -1,0 +1,1 @@
+﻿Get-ADUser -SearchBase "OU=Users,OU=Inactive,DC=corp,DC=gianteagle,DC=com" -Filter * -Properties * |select Name, whenChanged <# -Filter {employeeID -notlike '*' -and SamAccountName -like '9*'}#> | export-csv -Path .\Documents\GitHub\Reports\inactiveOUusers.csv
