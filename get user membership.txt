@@ -1,0 +1,2 @@
+$user = "2113262"
+get-aduser -
