@@ -1,3 +1,11 @@
+<#
+ .AUTHOR
+        Luke Encrapera
+        Email: Luke.Encrapera@gianteagle.com
+        Company: Giant Eagle
+
+#>
+
 # Define the nonbanner_stores group
 $nonBannerGroup = "nonbanner_stores"
 
