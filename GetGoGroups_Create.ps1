@@ -156,29 +156,6 @@ $siteData = @(
     @{SiteID = 3699; Description = "3699 Uniontown GetGo PA"},
     @{SiteID = 3701; Description = "3701 Roaring Spring GetGo PA"},
     @{SiteID = 3703; Description = "3703 Fairlawn GetGo OH"},
-    # Start of 7000 series (included)
-    @{SiteID = 7000; Description = "7000 Ricker Wholesale Admin IN"},
-    @{SiteID = 7001; Description = "7001 Dealer Drop Ship Site IN"},
-    @{SiteID = 7002; Description = "7002 Store Drop Ship Site IN"},
-    @{SiteID = 7003; Description = "7003 Adams-Warrendale RD GetGo PA"},
-    @{SiteID = 7004; Description = "7004 Broadway IN"},
-    @{SiteID = 7005; Description = "7005 Frankton IN"},
-    @{SiteID = 7006; Description = "7006 Middletown IN"},
-    @{SiteID = 7007; Description = "7007 Lapel IN"},
-    @{SiteID = 7008; Description = "7008 Elwood IN"},
-    @{SiteID = 7009; Description = "7009 I69 IN"},
-    @{SiteID = 7010; Description = "7010 Madison Avenue IN"},
-    @{SiteID = 7011; Description = "7011 Exit 10 IN"},
-    @{SiteID = 7012; Description = "7012 Applewood IN"},
-    @{SiteID = 7013; Description = "7013 Alexandria - IN"},
-    @{SiteID = 7014; Description = "7014 Chesterfield IN"},
-    @{SiteID = 7015; Description = "7015 Tipton IN"},
-    @{SiteID = 7016; Description = "7016 Meadowbrook IN"},
-    @{SiteID = 7017; Description = "7017 Ninth Street IN"},
-    @{SiteID = 7018; Description = "7018 Ogilville IN"},
-    @{SiteID = 7019; Description = "7019 Edinburgh IN"},
-    @{SiteID = 7020; Description = "7020 Edgewood IN"}
-    # Add any additional 7000 series sites if necessary...
 )
 
 # Loop through each site and process it
