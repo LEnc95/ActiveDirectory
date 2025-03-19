@@ -155,7 +155,7 @@ $siteData = @(
     @{SiteID = 3694; Description = "3694 Aliquippa GetGo PA"},
     @{SiteID = 3699; Description = "3699 Uniontown GetGo PA"},
     @{SiteID = 3701; Description = "3701 Roaring Spring GetGo PA"},
-    @{SiteID = 3703; Description = "3703 Fairlawn GetGo OH"},
+    @{SiteID = 3703; Description = "3703 Fairlawn GetGo OH"}
 )
 
 # Loop through each site and process it
