@@ -20,7 +20,9 @@ function Generate-RandomPassword {
         $password += "!"  # Append a second "!" to meet length requirement if necessary
     }
 
-    return $password
+    # Convert password to SecureString
+    $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+    return $securePassword
 }
 
 # Full list of site IDs and descriptions (7000 and 7500 series)
@@ -123,23 +125,38 @@ foreach ($site in $siteData) {
     $siteID = $site.SiteID
     $storeDescription = $site.Description
 
-    # Generate a random password
-    $password = Generate-RandomPassword
+    try {
+        # Generate a random password
+        $password = Generate-RandomPassword
 
-    # Create the user object with the format 'GetGo <SiteID>'
-    $userName = "GetGo$siteID"
-    New-ADUser -SamAccountName $userName -UserPrincipalName "$userName@redbaron.com" -Name $userName `
-               -GivenName "GetGo" -Surname "$siteID" -DisplayName "$storeDescription" `
-               -Path "CN=Users,DC=redbaron,DC=com" -AccountPassword $password `
-               -PasswordNeverExpires $true -CannotChangePassword $true -Enabled $true
+        # Create the user object with the format 'GetGo <SiteID>'
+        $userName = "GetGo$siteID"
 
-    # Add the user to the nonbanner_stores group
-    Add-ADGroupMember -Identity $nonBannerGroup -Members $userName
+        # Check if the user already exists
+        $existingUser = Get-ADUser -Filter {SamAccountName -eq $userName}
+        if ($existingUser) {
+            Write-Host "User $userName already exists. Skipping creation."
+            continue
+        }
 
-    # Add the username and password to the list
-    $userData += [PSCustomObject]@{
-        Username = $userName
-        Password = $password
+        # Create the AD user
+        New-ADUser -SamAccountName $userName -UserPrincipalName "$userName@redbaron.com" -Name $userName `
+                   -GivenName "GetGo" -Surname "$siteID" -DisplayName "$storeDescription" `
+                   -Path "CN=Users,DC=redbaron,DC=com" -AccountPassword $password `
+                   -PasswordNeverExpires $true -CannotChangePassword $true -Enabled $true
+
+        # Add the user to the nonbanner_stores group
+        Add-ADGroupMember -Identity $nonBannerGroup -Members $userName
+
+        # Add the username and password to the list
+        $userData += [PSCustomObject]@{
+            Username = $userName
+            Password = $password
+        }
+
+        Write-Host "Created user: $userName with initial password: $password"
+    } catch {
+        Write-Host "Error creating user $userName: $_"
     }
 }
 
